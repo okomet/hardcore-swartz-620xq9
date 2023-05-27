@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ColorfulMessage from "./components/ColorfulMessage";
 
 const App = () => {
-  console.log("saisyo");
+  console.log("さいしょ");
   const [num, setNum] = useState(0);
-  const [faceShoeFlag, setFaceShoeFlag] = useState(true);
+  const [faceShoeFlag, setFaceShoeFlag] = useState(false);
 
   const onclickCountUp = () => {
     setNum(num + 1);
@@ -12,6 +12,16 @@ const App = () => {
   const onclickSwitchShowFlag = () => {
     setFaceShoeFlag(!faceShoeFlag);
   };
+
+  useEffect(() => {
+    if (num > 0) {
+      if (num % 3 === 0) {
+        faceShoeFlag || setFaceShoeFlag(true);
+      } else {
+        faceShoeFlag && setFaceShoeFlag(false);
+      }
+    }
+  }, [num]);
 
   return (
     <>
